@@ -125,7 +125,8 @@
   display: grid;
   background-color: var(--bg-color);
   border: 2px solid var(--color-text);
-  margin: 0 auto;
+  margin: 0 auto 50px;
+  position: relative;
 }
 
 .card__content-title {
@@ -138,9 +139,7 @@
 }
 
 .card__content-picture {
-  width: 100%;
   height: 696px;
-  position: relative;
   border-top: 2px solid var(--color-text);
 }
 
@@ -153,13 +152,51 @@
   opacity: 0.5;
   mix-blend-mode: hard-light;
   position: absolute;
-  top: 28px;
+  top: 57px;
   right: 24px;
   text-shadow:
     -1px 0 var(--shadow), 
    0 1px var(--shadow), 
    1px 0 var(--shadow), 
    0 -1px var(--shadow);
+   z-index: 1;
+}
+
+.card__picture {
+  height: 100%;
+  width: 100%;
+}
+
+.card__picture-sepia {
+  filter: sepia(75%);
+}
+
+.card__picture-brightness {
+  filter: brightness(150%);
+}
+
+.card__picture-contrast {
+  filter: contrast(60%);
+}
+
+.card__picture-opacity {
+  filter: opacity(75%);
+}
+
+.card__picture-saturate {
+  filter: saturate(198%);
+}
+
+.card__picture-hue-rotate {
+  filter: hue-rotate(50deg);
+}
+
+.card__picture-blur {
+  filter: blur(0.2rem);
+}
+
+.card__picture-filters {
+  filter: contrast(30%) hue-rotate(70deg) saturate(178%);
 }
 
 .card__content-text {
@@ -181,10 +218,6 @@
   gap: 6px;
   justify-content: flex-end;
   margin: 0 25px 25px 0;
-}
-
-.like-icon {
-  
 }
 
 .core {
@@ -220,6 +253,11 @@
   opacity: 0;
 }
 
+.contour {
+  transition: fill 0.1s linear;
+  fill: var(--color-text);
+}
+
 .like-icon.is-liked .core {
   transition: fill 0.3s linear;
   fill: var(--sparks);
@@ -235,8 +273,13 @@
   fill: var(--sparks);
 }
 
-.heart {
-  transition: sparks 0.3s ease-in 0.1s;
+.like-icon.is-liked .heart {
+  animation: big-heart 0.3s ease-in 0.1s;
+  transform-origin: center;
+}
+
+.like-icon.is-liked .sparks {
+  animation: sparks 0.3s ease-in 0.1s;
 }
 
 .card__icon-button {
@@ -260,12 +303,9 @@
 .button__text {
   font-family: var(--decorate-font);
   font-size: 14px;
-  font-weight: 400;
   line-height: 90%;
   color: var(--color-text);
   position: relative;
-  transition: transform 0.5s ease-in-out;
-  mix-blend-mode: difference;
 }
 
 .card__like-button {
@@ -303,13 +343,12 @@
 
 .card__like-button:hover::before {
   transform: scaleX(1);
-  mix-blend-mode: difference;
 }
 
 .button__save {
-  background-color: transparent;
+  background-color: var(--bg-color);
   border: 2px solid var(--color-text);
-  margin: 50px auto 103px;
+  margin: 2px auto 103px;
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -342,13 +381,99 @@
 
 .button__save:hover::before {
   transform: scaleX(1);
+}
+
+.dialog {
+  background-color: var(--bg-color);
+  border: 2px solid var(--color-text);
+  margin: auto;
+  width: min(100%, 353px);
+  padding: 30px;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.dialog__content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dialog__text {
+  color: var(--color-text);
+  text-transform: uppercase;
+  font-family: var(--decorate-font);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.dialog__floppy {
+  width: 39px;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.dialog__button {
+  border: 2px solid var(--color-text);
+  background-color: var(--bg-color);
+  width: min(100%, 293px);
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.dialog__button .button__text {
+  text-transform: uppercase;
+}
+
+.dialog__button:focus {
+  outline: none;
+}
+
+.button__save:focus-visible {
+  box-shadow: 2px 2px 0 0 var(--color-text);
+  transition: box-shadow 0.3s ease;
+}
+
+.dialog__button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-text);
+  transition: transform 0.5s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.dialog__button:hover::before {
+  transform: scaleX(1);
+}
+
+.button__save:hover .button__text,
+.button__save:hover .button__floppy,
+.card__like-button:hover .button__text,
+.dialog__button:hover .button__text {
+  transition: transform 0.5s ease-in-out;
+  transform-origin: center left;
   mix-blend-mode: difference;
+  color: var(--color-difference);
 }
 
 .button__floppy {
   width: 21px;
   margin: 15px 0;
-  fill: var(--color-text);
+  color: var(--color-text);
 }
 
 @keyframes jump {
@@ -365,13 +490,31 @@
   }
 }
 
-@keyframes sparks {
-  from {
-    transform: scale(1.1);
+@keyframes big-heart {
+  0% {
+    transform: scale(1);
   } 
 
-  to {
-    transform: (1.5);
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparks {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
@@ -391,5 +534,10 @@
 
   .button__floppy {
     margin-bottom: 0;
+    width: 28px;
+  }
+
+  .button__save .button__text {
+    margin-bottom: 15px;
   }
 }

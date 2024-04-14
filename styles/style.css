@@ -17,7 +17,7 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-variation-settings: var(--main-font-normal);
+  font-variation-settings: 'wght' var(--main-font-normal);
   background-color: var(--bg-color);
   background-image: 
     repeating-linear-gradient(transparent, var(--bg-images) 2px),

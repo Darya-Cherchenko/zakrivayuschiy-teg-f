@@ -17,7 +17,7 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-variation-settings: var(--main-color);
+  font-variation-settings: var(--main-font-normal);
   background-color: var(--bg-color);
   background-image: 
     repeating-linear-gradient(transparent, var(--bg-images) 2px),
@@ -32,6 +32,10 @@
 .theme-menu__list {
   color: var(--color-text);
   font-family: var(--decorate-font);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 24px auto;
 }
 
 .header {
@@ -58,13 +62,6 @@
   font-size: clamp(0.875rem, 0.7143rem + 0.8036vw, 1.4375rem);
   text-transform: uppercase;
   color: var(--color-text);
-}
-
-.theme-menu__list {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  margin: 24px auto;
 }
 
 .theme-menu__button {
@@ -438,7 +435,7 @@
   outline: none;
 }
 
-.button__save:focus-visible {
+.dialog__button:focus-visible {
   box-shadow: 2px 2px 0 0 var(--color-text);
   transition: box-shadow 0.3s ease;
 }

@@ -33,23 +33,6 @@
    --sparks: #FF0000;
    --color-difference: #00cc14;
 }
-  
-@media (prefers-color-scheme: light) {
-    :root {
-        --accent-font: 'Inter', sans-serif;
-        --decorate-font: 'Press Start 2P', fantasy;
-        --main-font-normal: 400;
-        --main-font-bold: 700;
-        --bg-color: #fff;
-        --bg-images: #d3d3d3;
-        --bg-gradient-max: #1a1a1a;
-        --bg-gradient-min: #e7e7e7;
-        --color-text: #000;
-        --shadow: #fff;
-        --sparks: #FF0000;
-        --color-difference: #fff;
-    }
-}
 
 @media (prefers-color-scheme: dark) {
     :root {

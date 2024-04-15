@@ -1,1 +1,1 @@
-Project 4 'zakrivayuschiy-teg-f' link to the repository: https://github.com/Darya-Cherchenko/zakrivayuschiy-teg-f.git
+Project 4 'zakrivayuschiy-teg-f': https://darya-cherchenko.github.io/zakrivayuschiy-teg-f/
